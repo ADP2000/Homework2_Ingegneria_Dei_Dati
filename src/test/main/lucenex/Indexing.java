@@ -33,25 +33,16 @@ public class Indexing {
 	public static void main(String[] args) throws IOException {
 		
 		Map<String, Analyzer> perFieldAnalyzers = new HashMap<>();
-		
-		CharArraySet stopWord = new CharArraySet(Arrays.asList(".txt"), 
-				true);
+
 	
 		Analyzer analyzerPerContent = CustomAnalyzer.builder()
                 .withTokenizer(WhitespaceTokenizerFactory.class)
                 .addTokenFilter(LowerCaseFilterFactory.class)
                 .addTokenFilter(WordDelimiterGraphFilterFactory.class)
-                //.addTokenFilter(StopFilterFactory.class,"in", "dei", "di", "il", "lo",
-        		//		"la", "i", "gli", "le", "un", "una", "in", "con","su","per","tra","fra")
-               .build();
+                .build();
 		
-//		Analyzer analyzerPerName= CustomAnalyzer.builder()
-//                .withTokenizer(WhitespaceTokenizerFactory.class)
-//                //.addTokenFilter(StopFilterFactory.class,".txt")
-//				.addTokenFilter(LowerCaseFilterFactory.class)
-//                .build();
 
-		perFieldAnalyzers.put("name", new StandardAnalyzer(stopWord));
+		perFieldAnalyzers.put("name", new StandardAnalyzer());
 		perFieldAnalyzers.put("content", analyzerPerContent);
 		
 		Analyzer analyzer = new PerFieldAnalyzerWrapper(new ItalianAnalyzer(), 
@@ -63,7 +54,7 @@ public class Indexing {
 		IndexWriter writer = new IndexWriter(directory, config);
 		
 
-		File directoryPath = new File("C:\\Users\\antod\\OneDrive - Universita degli Studi Roma Tre\\Università\\Ingegneria de Dati\\Homework\\documents");
+		File directoryPath = new File("target/documents");
 		File[] files = directoryPath.listFiles();
 
 

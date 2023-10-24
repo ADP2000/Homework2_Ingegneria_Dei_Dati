@@ -10,14 +10,13 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.search.BooleanClause;
+import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.PhraseQuery;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
-import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
@@ -31,14 +30,13 @@ public class Searching {
 
 			System.out.print("Inserisci il campo su cui vui svolgere la query (content or "
 					+ "name): ");
-			BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in));
-			String field = reader1.readLine();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			String field = reader.readLine();
 
 			System.out.print("Inserisci una query: ");
-			BufferedReader reader2 = new BufferedReader(new InputStreamReader(System.in));
-			String queryString = reader2.readLine();
-			//Query query = new TermQuery(new Term("content", queryString));
-
+			reader = new BufferedReader(new InputStreamReader(System.in));
+			String queryString = reader.readLine();
+			
 			String[] terms = queryString.split(" ");
 			PhraseQuery.Builder builder = new PhraseQuery.Builder();
 			for(String term: terms) {
@@ -72,12 +70,12 @@ public class Searching {
 
 			System.out.print("Inserisci il campo su cui vui svolgere la query (content or "
 					+ "name): ");
-			BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in));
-			String field = reader1.readLine();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			String field = reader.readLine();
 
 			System.out.print("Inserisci una query: ");
-			BufferedReader reader2 = new BufferedReader(new InputStreamReader(System.in));
-			String queryString = reader2.readLine();
+			reader = new BufferedReader(new InputStreamReader(System.in));
+			String queryString = reader.readLine();
 
 			String[] terms = queryString.split(" ");
 			BooleanQuery.Builder builder = new BooleanQuery.Builder();
