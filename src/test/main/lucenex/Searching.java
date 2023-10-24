@@ -44,7 +44,7 @@ public class Searching {
 			}
 			PhraseQuery phraseQuery = builder.build();
 
-			TopDocs hits = searcher.search(phraseQuery, 3);
+			TopDocs hits = searcher.search(phraseQuery, 2);
 			for(int i = 0; i< hits.scoreDocs.length; i++) {
 				ScoreDoc scoreDoc = hits.scoreDocs[i];
 				Document doc = searcher.doc(scoreDoc.doc);
@@ -86,7 +86,7 @@ public class Searching {
 
 
 
-			TopDocs hits = searcher.search(booleanQuery, 3);
+			TopDocs hits = searcher.search(booleanQuery, 5);
 			for(int i = 0; i< hits.scoreDocs.length; i++) {
 				ScoreDoc scoreDoc = hits.scoreDocs[i];
 				Document doc = searcher.doc(scoreDoc.doc);
